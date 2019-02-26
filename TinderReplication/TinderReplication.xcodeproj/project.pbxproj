@@ -14,6 +14,7 @@
 		901917472223FC7D00DA9F67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 901917452223FC7D00DA9F67 /* LaunchScreen.storyboard */; };
 		901917522223FC7D00DA9F67 /* TinderReplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901917512223FC7D00DA9F67 /* TinderReplicationTests.swift */; };
 		9022387222256CE700D7B16F /* MiddleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387122256CE700D7B16F /* MiddleCardView.swift */; };
+		90223875222592C900D7B16F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90223874222592C900D7B16F /* UserModel.swift */; };
 		909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */; };
 		909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A62225438E00ECDD04 /* TopStackView.swift */; };
 		909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A82225439F00ECDD04 /* BottomStackView.swift */; };
@@ -41,6 +42,7 @@
 		901917512223FC7D00DA9F67 /* TinderReplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderReplicationTests.swift; sourceTree = "<group>"; };
 		901917532223FC7D00DA9F67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9022387122256CE700D7B16F /* MiddleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleCardView.swift; sourceTree = "<group>"; };
+		90223874222592C900D7B16F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		909C29A62225438E00ECDD04 /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		909C29A82225439F00ECDD04 /* BottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStackView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		9019173B2223FC7B00DA9F67 /* TinderReplication */ = {
 			isa = PBXGroup;
 			children = (
+				90223873222592A300D7B16F /* Model */,
 				909C29A222253AC900ECDD04 /* Views */,
 				909C29A322253CF200ECDD04 /* Extensions */,
 				9019173C2223FC7B00DA9F67 /* AppDelegate.swift */,
@@ -104,6 +107,14 @@
 				901917532223FC7D00DA9F67 /* Info.plist */,
 			);
 			path = TinderReplicationTests;
+			sourceTree = "<group>";
+		};
+		90223873222592A300D7B16F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				90223874222592C900D7B16F /* UserModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		909C29A222253AC900ECDD04 /* Views */ = {
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */,
+				90223875222592C900D7B16F /* UserModel.swift in Sources */,
 				909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */,
 				909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */,
 				9019173F2223FC7B00DA9F67 /* TinderHomeController.swift in Sources */,

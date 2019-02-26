@@ -10,16 +10,27 @@ import UIKit
 
 class MiddleCardView: UIView{
     
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "0"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "0"))
+    let userInformation = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.cornerRadius = 10
         clipsToBounds = true
         
+        imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
+        setupUserInformation()
         addGesture()
+    }
+    
+    fileprivate func setupUserInformation(){
+        addSubview(userInformation)
+        userInformation.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        userInformation.textColor = .white
+        userInformation.numberOfLines = 0
+        userInformation.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
     }
     
     
@@ -60,7 +71,9 @@ class MiddleCardView: UIView{
             }
         }) { _ in
             self.transform = .identity
-            self.removeFromSuperview()
+            if shouldDismissCard{
+                self.removeFromSuperview()
+            }
         }
     }
     
