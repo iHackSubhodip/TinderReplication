@@ -12,20 +12,28 @@ class ViewController: UIViewController {
 
     let topStackView = TopStackView()
     let bottomStackView = BottomStackView()
-    let middleView = UIView()
+    let middleCardView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        middleView.backgroundColor = .black
-        setupUI()
+        setupStackView()
+        setupCardView()
     }
     
+    fileprivate func setupCardView(){
+        let cardView = MiddleCardView(frame: .zero)
+        middleCardView.addSubview(cardView)
+        cardView.fillSuperview()
+    }
     
-    fileprivate func setupUI(){
-        let fullScreenStackView = UIStackView(arrangedSubviews: [topStackView, middleView, bottomStackView])
+    fileprivate func setupStackView(){
+        let fullScreenStackView = UIStackView(arrangedSubviews: [topStackView, middleCardView, bottomStackView])
         fullScreenStackView.axis = .vertical
         view.addSubview(fullScreenStackView)
         fullScreenStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        fullScreenStackView.isLayoutMarginsRelativeArrangement = true
+        fullScreenStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
+        fullScreenStackView.bringSubviewToFront(middleCardView)
     }
 
 }
