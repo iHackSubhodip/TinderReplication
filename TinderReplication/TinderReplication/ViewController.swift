@@ -10,11 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let topStackView = TopStackView()
+    let bottomStackView = BottomStackView()
+    let middleView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        middleView.backgroundColor = .black
+        setupUI()
     }
-
+    
+    
+    fileprivate func setupUI(){
+        let fullScreenStackView = UIStackView(arrangedSubviews: [topStackView, middleView, bottomStackView])
+        fullScreenStackView.axis = .vertical
+        view.addSubview(fullScreenStackView)
+        fullScreenStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+    }
 
 }
 
