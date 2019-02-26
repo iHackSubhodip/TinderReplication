@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TinderHomeController: UIViewController {
 
     let topStackView = TopStackView()
     let bottomStackView = BottomStackView()
@@ -21,9 +21,11 @@ class ViewController: UIViewController {
     }
     
     fileprivate func setupCardView(){
-        let cardView = MiddleCardView(frame: .zero)
-        middleCardView.addSubview(cardView)
-        cardView.fillSuperview()
+        (0..<6).forEach { (_) in
+            let cardView = MiddleCardView(frame: .zero)
+            middleCardView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     fileprivate func setupStackView(){
