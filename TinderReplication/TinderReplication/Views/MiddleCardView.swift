@@ -10,8 +10,19 @@ import UIKit
 
 class MiddleCardView: UIView{
     
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "0"))
-    let userInformation = UILabel()
+    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "0"))
+    fileprivate let userInformation = UILabel()
+    
+    var cardViewModel: TinderCardViewModel?{
+        didSet{
+            guard let imageName = cardViewModel?.imageName, let attributedString = cardViewModel?.attributedString, let textAlignment = cardViewModel?.textAlignment else{
+                return
+            }
+            imageView.image = UIImage(named: imageName)
+            userInformation.attributedText = attributedString
+            userInformation.textAlignment = textAlignment
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

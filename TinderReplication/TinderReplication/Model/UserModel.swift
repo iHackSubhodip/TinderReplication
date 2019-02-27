@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct UserModel{
+struct UserModel: TinderCardViewModelProtocol{
     let name: String
     let age: Int
     let profession: String

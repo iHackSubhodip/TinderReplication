@@ -14,4 +14,6 @@ struct TinderCardViewModel{
     let textAlignment: NSTextAlignment
 }
 
-
+protocol TinderCardViewModelProtocol{
+    func convertToCardViewModel() -> TinderCardViewModel
+}

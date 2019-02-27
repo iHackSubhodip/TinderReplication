@@ -14,11 +14,17 @@ class TinderHomeController: UIViewController {
     let bottomStackView = BottomStackView()
     let middleCardView = UIView()
     
-    let usersCard = [
-        UserModel(name: "Riju", age: 27, profession: "SDE", imageName: "0").convertToCardViewModel(),
-        UserModel(name: "Guriya", age: 26, profession: "SDE", imageName: "121").convertToCardViewModel()
-    ]
-    
+    let usersCard: [TinderCardViewModel] = {
+        let producer = [
+            UserModel(name: "Guriya", age: 26, profession: "SDE", imageName: "121"),
+            AdvertiserModel(tittle: "Riju", posterImageName: "0", brandname: "SDE")
+            ] as [TinderCardViewModelProtocol]
+        
+        let cardViewModel = producer.map ({
+            return $0.convertToCardViewModel()
+        })
+        return cardViewModel
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +35,7 @@ class TinderHomeController: UIViewController {
     fileprivate func setupCardView(){
         usersCard.forEach { (user) in
             let cardView = MiddleCardView(frame: .zero)
-            cardView.imageView.image = UIImage(named: user.imageName)
-            cardView.userInformation.attributedText = user.attributedString
-            cardView.userInformation.textAlignment = user.textAlignment            
+            cardView.cardViewModel = user
             middleCardView.addSubview(cardView)
             cardView.fillSuperview()
         }

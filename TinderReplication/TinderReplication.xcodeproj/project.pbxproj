@@ -16,6 +16,7 @@
 		9022387222256CE700D7B16F /* MiddleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387122256CE700D7B16F /* MiddleCardView.swift */; };
 		90223875222592C900D7B16F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90223874222592C900D7B16F /* UserModel.swift */; };
 		9022387922266B8A00D7B16F /* TinderCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387822266B8A00D7B16F /* TinderCardViewModel.swift */; };
+		9022387B222675D800D7B16F /* AdvertiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387A222675D800D7B16F /* AdvertiserModel.swift */; };
 		909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */; };
 		909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A62225438E00ECDD04 /* TopStackView.swift */; };
 		909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A82225439F00ECDD04 /* BottomStackView.swift */; };
@@ -45,6 +46,7 @@
 		9022387122256CE700D7B16F /* MiddleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiddleCardView.swift; sourceTree = "<group>"; };
 		90223874222592C900D7B16F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9022387822266B8A00D7B16F /* TinderCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderCardViewModel.swift; sourceTree = "<group>"; };
+		9022387A222675D800D7B16F /* AdvertiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserModel.swift; sourceTree = "<group>"; };
 		909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		909C29A62225438E00ECDD04 /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		909C29A82225439F00ECDD04 /* BottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStackView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				90223874222592C900D7B16F /* UserModel.swift */,
+				9022387A222675D800D7B16F /* AdvertiserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9022387B222675D800D7B16F /* AdvertiserModel.swift in Sources */,
 				9022387922266B8A00D7B16F /* TinderCardViewModel.swift in Sources */,
 				909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */,
 				90223875222592C900D7B16F /* UserModel.swift in Sources */,
