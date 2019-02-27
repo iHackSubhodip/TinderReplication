@@ -14,10 +14,12 @@ class TinderHomeController: UIViewController {
     let bottomStackView = BottomStackView()
     let middleCardView = UIView()
     
-    let users = [
-        UserModel(name: "Riju", age: 27, profession: "SDE", imageName: "0"),
-        UserModel(name: "Guriya", age: 26, profession: "SDE", imageName: "121")
+    let usersCard = [
+        UserModel(name: "Riju", age: 27, profession: "SDE", imageName: "0").convertToCardViewModel(),
+        UserModel(name: "Guriya", age: 26, profession: "SDE", imageName: "121").convertToCardViewModel()
     ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
@@ -25,15 +27,11 @@ class TinderHomeController: UIViewController {
     }
     
     fileprivate func setupCardView(){
-        users.forEach { (user) in
+        usersCard.forEach { (user) in
             let cardView = MiddleCardView(frame: .zero)
             cardView.imageView.image = UIImage(named: user.imageName)
-            
-            let attributedUserInfoText = NSMutableAttributedString(string: user.name, attributes:[.font: UIFont.systemFont(ofSize: 34, weight: .heavy)])
-            attributedUserInfoText.append(NSMutableAttributedString(string: "  \(user.age)", attributes:[.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
-            attributedUserInfoText.append(NSMutableAttributedString(string: "\n\(user.profession)", attributes:[.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-            cardView.userInformation.attributedText = attributedUserInfoText
-            
+            cardView.userInformation.attributedText = user.attributedString
+            cardView.userInformation.textAlignment = user.textAlignment            
             middleCardView.addSubview(cardView)
             cardView.fillSuperview()
         }

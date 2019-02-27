@@ -13,6 +13,15 @@ struct UserModel{
     let age: Int
     let profession: String
     let imageName: String
+    
+    func convertToCardViewModel() -> TinderCardViewModel{
+        
+        let attributedUserInfoText = NSMutableAttributedString(string: name, attributes:[.font: UIFont.systemFont(ofSize: 34, weight: .heavy)])
+        attributedUserInfoText.append(NSMutableAttributedString(string: "  \(age)", attributes:[.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
+        attributedUserInfoText.append(NSMutableAttributedString(string: "\n\(profession)", attributes:[.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        
+        return TinderCardViewModel(imageName: imageName, attributedString: attributedUserInfoText, textAlignment: .left)
+    }
 }
 
 
