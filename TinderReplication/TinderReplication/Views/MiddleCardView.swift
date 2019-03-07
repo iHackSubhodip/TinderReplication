@@ -12,6 +12,7 @@ class MiddleCardView: UIView{
     
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "0"))
     fileprivate let userInformation = UILabel()
+    fileprivate let gradientLayer = CAGradientLayer()
     
     var cardViewModel: TinderCardViewModel?{
         didSet{
@@ -32,8 +33,13 @@ class MiddleCardView: UIView{
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
+        setupGradientLayer()
         setupUserInformation()
         addGesture()
+    }
+    
+    override func layoutSubviews() {
+        gradientLayer.frame = self.frame
     }
     
     fileprivate func setupUserInformation(){
@@ -44,9 +50,19 @@ class MiddleCardView: UIView{
         userInformation.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
     }
     
+    fileprivate func setupGradientLayer(){
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.5,1]
+        layer.addSublayer(gradientLayer)
+    }
+    
     
     @objc fileprivate func handlePan(gesture: UIPanGestureRecognizer){
         switch gesture.state {
+        case .began:
+            superview?.subviews.forEach({ (subview) in
+                subview.layer.removeAllAnimations()
+            })
         case .changed:
             handleChanged(gesture)
         case .ended:
