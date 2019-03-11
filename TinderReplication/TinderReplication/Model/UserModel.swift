@@ -12,7 +12,7 @@ struct UserModel: TinderCardViewModelProtocol{
     let name: String
     let age: Int
     let profession: String
-    let imageName: String
+    let imageNames: [String]
     
     func convertToCardViewModel() -> TinderCardViewModel{
         
@@ -20,7 +20,7 @@ struct UserModel: TinderCardViewModelProtocol{
         attributedUserInfoText.append(NSMutableAttributedString(string: "  \(age)", attributes:[.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         attributedUserInfoText.append(NSMutableAttributedString(string: "\n\(profession)", attributes:[.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
         
-        return TinderCardViewModel(imageName: imageName, attributedString: attributedUserInfoText, textAlignment: .left)
+        return TinderCardViewModel(imageNamesArray: imageNames, attributedString: attributedUserInfoText, textAlignment: .left)
     }
 }
 

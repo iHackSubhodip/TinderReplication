@@ -18,7 +18,7 @@ struct AdvertiserModel:TinderCardViewModelProtocol {
         let attributedString = NSMutableAttributedString(string: tittle, attributes: [.font: UIFont.systemFont(ofSize: 34, weight: .heavy)])
         
         attributedString.append(NSMutableAttributedString(string: "\n" + brandname, attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .bold)]))
-        return TinderCardViewModel(imageName: posterImageName, attributedString: attributedString, textAlignment: .center)
+        return TinderCardViewModel(imageNamesArray: [posterImageName], attributedString: attributedString, textAlignment: .center)
     }
 }
 

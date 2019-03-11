@@ -16,7 +16,7 @@ class TinderHomeController: UIViewController {
     
     let usersCard: [TinderCardViewModel] = {
         let producer = [
-            UserModel(name: "Guriya", age: 26, profession: "SDE", imageName: "121"),
+            UserModel(name: "Jane", age: 26, profession: "SDE", imageNames: ["jane1", "jane2", "jane3"]),
             AdvertiserModel(tittle: "Riju", posterImageName: "0", brandname: "SDE")
             ] as [TinderCardViewModelProtocol]
         

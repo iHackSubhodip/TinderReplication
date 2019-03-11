@@ -9,7 +9,7 @@
 import UIKit
 
 struct TinderCardViewModel{
-    let imageName: String
+    let imageNamesArray: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
 }
