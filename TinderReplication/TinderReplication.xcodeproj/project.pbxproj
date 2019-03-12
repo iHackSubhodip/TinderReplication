@@ -17,6 +17,8 @@
 		90223875222592C900D7B16F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90223874222592C900D7B16F /* UserModel.swift */; };
 		9022387922266B8A00D7B16F /* TinderCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387822266B8A00D7B16F /* TinderCardViewModel.swift */; };
 		9022387B222675D800D7B16F /* AdvertiserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9022387A222675D800D7B16F /* AdvertiserModel.swift */; };
+		903418D6223783AB006E5D1C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903418D5223783AB006E5D1C /* RegistrationController.swift */; };
+		903418D92237A6C1006E5D1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903418D82237A6C1006E5D1C /* CustomTextField.swift */; };
 		909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */; };
 		909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A62225438E00ECDD04 /* TopStackView.swift */; };
 		909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A82225439F00ECDD04 /* BottomStackView.swift */; };
@@ -47,6 +49,8 @@
 		90223874222592C900D7B16F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9022387822266B8A00D7B16F /* TinderCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderCardViewModel.swift; sourceTree = "<group>"; };
 		9022387A222675D800D7B16F /* AdvertiserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiserModel.swift; sourceTree = "<group>"; };
+		903418D5223783AB006E5D1C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		903418D82237A6C1006E5D1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		909C29A62225438E00ECDD04 /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		909C29A82225439F00ECDD04 /* BottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStackView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				909C29A222253AC900ECDD04 /* Views */,
 				902238762226674600D7B16F /* Controller */,
 				909C29A322253CF200ECDD04 /* Extensions */,
+				903418D72237A69E006E5D1C /* Helper */,
 				9019173C2223FC7B00DA9F67 /* AppDelegate.swift */,
 				901917402223FC7B00DA9F67 /* Main.storyboard */,
 				901917432223FC7D00DA9F67 /* Assets.xcassets */,
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9019173E2223FC7B00DA9F67 /* TinderHomeController.swift */,
+				903418D5223783AB006E5D1C /* RegistrationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,6 +143,14 @@
 				9022387822266B8A00D7B16F /* TinderCardViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		903418D72237A69E006E5D1C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				903418D82237A6C1006E5D1C /* CustomTextField.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		909C29A222253AC900ECDD04 /* Views */ = {
@@ -259,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9022387B222675D800D7B16F /* AdvertiserModel.swift in Sources */,
+				903418D92237A6C1006E5D1C /* CustomTextField.swift in Sources */,
 				9022387922266B8A00D7B16F /* TinderCardViewModel.swift in Sources */,
 				909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */,
 				90223875222592C900D7B16F /* UserModel.swift in Sources */,
@@ -266,6 +281,7 @@
 				909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */,
 				9019173F2223FC7B00DA9F67 /* TinderHomeController.swift in Sources */,
 				9019173D2223FC7B00DA9F67 /* AppDelegate.swift in Sources */,
+				903418D6223783AB006E5D1C /* RegistrationController.swift in Sources */,
 				9022387222256CE700D7B16F /* MiddleCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

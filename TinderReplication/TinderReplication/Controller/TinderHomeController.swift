@@ -8,11 +8,13 @@
 
 import UIKit
 
+class MiddleUIView: UIView{ }
+
 class TinderHomeController: UIViewController {
 
     let topStackView = TopStackView()
     let bottomStackView = BottomStackView()
-    let middleCardView = UIView()
+    let middleCardView = MiddleUIView()
     
     let usersCard: [TinderCardViewModel] = {
         let producer = [
