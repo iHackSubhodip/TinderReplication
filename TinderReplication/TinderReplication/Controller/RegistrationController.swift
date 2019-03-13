@@ -16,7 +16,6 @@ class RegistrationController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 10
         return button
     }()
@@ -50,18 +49,30 @@ class RegistrationController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
         return button
     }()
     
-    lazy var layoutStackView = UIStackView(arrangedSubviews: [
+    lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            fullNameTextField,
+            emailTextField,
+            passwordTextField,
+            registerButton
+            ])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
+    }()
+    
+    lazy var overallLayoutStackView = UIStackView(arrangedSubviews: [
         selectButton,
-        fullNameTextField,
-        emailTextField,
-        passwordTextField,
-        registerButton
+        verticalStackView
         ])
+    
+    fileprivate let layer = CAGradientLayer()
+    lazy var selectPhotoButtonWidthAnchor = selectButton.widthAnchor.constraint(equalToConstant: 275)
+    lazy var selectPhotoButtonHeightAnchor = selectButton.heightAnchor.constraint(equalToConstant: 275)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,8 +87,26 @@ class RegistrationController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        layer.frame = view.bounds
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.verticalSizeClass == .compact{
+            overallLayoutStackView.axis = .horizontal
+            verticalStackView.distribution = .fillEqually
+            selectPhotoButtonWidthAnchor.isActive = true
+            selectPhotoButtonHeightAnchor.isActive = false
+        }else{
+            overallLayoutStackView.axis = .vertical
+            verticalStackView.distribution = .fill
+            selectPhotoButtonWidthAnchor.isActive = false
+            selectPhotoButtonHeightAnchor.isActive = true
+        }
+    }
+    
     fileprivate func setupGradientLayer(){
-        let layer = CAGradientLayer()
         let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
         let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
         layer.colors = [topColor.cgColor, bottomColor.cgColor]
@@ -87,11 +116,11 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupStackView() {
-        view.addSubview(layoutStackView)
-        layoutStackView.axis = .vertical
-        layoutStackView.spacing = 8
-        layoutStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
-        layoutStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(overallLayoutStackView)
+        overallLayoutStackView.axis = .vertical
+        overallLayoutStackView.spacing = 8
+        overallLayoutStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        overallLayoutStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     fileprivate func setupTapGesture(){
@@ -109,7 +138,7 @@ extension RegistrationController {
     
     @objc fileprivate func showKeyboard(notification: NSNotification){
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let bottomSpace = view.frame.height - layoutStackView.frame.origin.y - layoutStackView.frame.height
+        let bottomSpace = view.frame.height - overallLayoutStackView.frame.origin.y - overallLayoutStackView.frame.height
         
         let difference = keyboardValue.cgRectValue.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 10)
