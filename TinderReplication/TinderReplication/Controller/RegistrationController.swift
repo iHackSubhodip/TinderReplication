@@ -55,10 +55,25 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    lazy var layoutStackView = UIStackView(arrangedSubviews: [
+        selectButton,
+        fullNameTextField,
+        emailTextField,
+        passwordTextField,
+        registerButton
+        ])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGradientLayer()
         setupStackView()
+        setupNotificationObserver()
+        setupTapGesture()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     fileprivate func setupGradientLayer(){
@@ -72,17 +87,41 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupStackView() {
-        let layoutStackView = UIStackView(arrangedSubviews: [
-            selectButton,
-            fullNameTextField,
-            emailTextField,
-            passwordTextField,
-            registerButton
-            ])
         view.addSubview(layoutStackView)
         layoutStackView.axis = .vertical
         layoutStackView.spacing = 8
         layoutStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         layoutStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    fileprivate func setupTapGesture(){
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
+    }
+    
+    fileprivate func setupNotificationObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+}
+
+extension RegistrationController {
+    
+    @objc fileprivate func showKeyboard(notification: NSNotification){
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let bottomSpace = view.frame.height - layoutStackView.frame.origin.y - layoutStackView.frame.height
+        
+        let difference = keyboardValue.cgRectValue.height - bottomSpace
+        self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 10)
+    }
+    
+    @objc fileprivate func hideKeyboard(){
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.transform = .identity
+        })
+    }
+    
+    @objc func handleTapDismiss(){
+        view.endEditing(true)
     }
 }
