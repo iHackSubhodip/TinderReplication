@@ -1,0 +1,6 @@
+framework module Pods_TinderReplication {
+  umbrella header "Pods-TinderReplication-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class RegistrationController: UIViewController {
 
@@ -54,7 +56,8 @@ class RegistrationController: UIViewController {
         button.backgroundColor = .lightGray
         button.isEnabled = false
         button.setTitleColor(.gray, for: .disabled)
-        button.layer.cornerRadius = 22
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(handleRegisterTapped), for: .touchUpInside)
         return button
     }()
     
@@ -151,8 +154,16 @@ class RegistrationController: UIViewController {
                 selfObject.registerButton.setTitleColor(.gray, for: .disabled)
             }
         }
-        
     }
+    
+    fileprivate func showError(error: Error){
+        let progressBar = JGProgressHUD(style: .dark)
+        progressBar.textLabel.text = "Failed with Error"
+        progressBar.detailTextLabel.text = error.localizedDescription
+        progressBar.show(in: self.view)
+        progressBar.dismiss(afterDelay: 4)
+    }
+    
 }
 
 extension RegistrationController {
@@ -182,6 +193,17 @@ extension RegistrationController {
             registrationViewModel.emailAddress = textField.text
         }else{
             registrationViewModel.passowrdField = textField.text
+        }
+    }
+    
+    @objc fileprivate func handleRegisterTapped(){
+        self.handleTapDismiss()
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+            if let err = err {
+                self.showError(error: err)
+                return
+            }
         }
     }
 }
