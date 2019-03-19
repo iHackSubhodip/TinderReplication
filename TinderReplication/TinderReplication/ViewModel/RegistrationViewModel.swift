@@ -13,11 +13,11 @@ class RegistrationViewModel{
     var fullName: String? { didSet{ checkFormValidity() } }
     var emailAddress: String? { didSet{ checkFormValidity() } }
     var passowrdField: String? { didSet{ checkFormValidity() } }
-    
-    var isFormValidObserver: ((Bool) -> ())?
+    var bindableImage = Bindable<UIImage>()
+    var bindableForm = Bindable<Bool>()
     
     fileprivate func checkFormValidity(){
         let isFormValid = fullName?.isEmpty == false && emailAddress?.isEmpty == false && passowrdField?.isEmpty == false
-        isFormValidObserver?(isFormValid)
+        bindableForm.value = isFormValid
     }
 }
