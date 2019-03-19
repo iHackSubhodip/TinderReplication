@@ -22,6 +22,7 @@
 		909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */; };
 		909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A62225438E00ECDD04 /* TopStackView.swift */; };
 		909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A82225439F00ECDD04 /* BottomStackView.swift */; };
+		90B930272240BCD3009BFFFD /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B930262240BCD3009BFFFD /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		909C29A62225438E00ECDD04 /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		909C29A82225439F00ECDD04 /* BottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStackView.swift; sourceTree = "<group>"; };
+		90B930262240BCD3009BFFFD /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				9022387822266B8A00D7B16F /* TinderCardViewModel.swift */,
+				90B930262240BCD3009BFFFD /* RegistrationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9022387B222675D800D7B16F /* AdvertiserModel.swift in Sources */,
+				90B930272240BCD3009BFFFD /* RegistrationViewModel.swift in Sources */,
 				903418D92237A6C1006E5D1C /* CustomTextField.swift in Sources */,
 				9022387922266B8A00D7B16F /* TinderCardViewModel.swift in Sources */,
 				909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */,

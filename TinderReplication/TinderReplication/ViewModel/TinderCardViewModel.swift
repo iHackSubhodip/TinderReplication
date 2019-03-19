@@ -9,6 +9,7 @@
 import UIKit
 
 class TinderCardViewModel{
+    
     let imageNamesArray: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
