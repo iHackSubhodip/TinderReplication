@@ -85,6 +85,7 @@ class RegistrationController: UIViewController {
     lazy var selectPhotoButtonWidthAnchor = selectButton.widthAnchor.constraint(equalToConstant: 275)
     lazy var selectPhotoButtonHeightAnchor = selectButton.heightAnchor.constraint(equalToConstant: 275)
     let registrationViewModel = RegistrationViewModel()
+    let registerHUD = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,9 +168,20 @@ class RegistrationController: UIViewController {
             guard let selfObject = self else { return }
             selfObject.selectButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
+        
+        registrationViewModel.isRegistering.bind { [weak self] (isRegistering) in
+            guard let selfObject = self else { return }
+            if isRegistering == true{
+                selfObject.registerHUD.textLabel.text = "Register"
+                selfObject.registerHUD.show(in: selfObject.view)
+            }else{
+                selfObject.registerHUD.dismiss()
+            }
+        }
     }
     
     fileprivate func showError(error: Error){
+        registerHUD.dismiss()
         let progressBar = JGProgressHUD(style: .dark)
         progressBar.textLabel.text = "Failed with Error"
         progressBar.detailTextLabel.text = error.localizedDescription
@@ -205,19 +217,20 @@ extension RegistrationController {
         }else if textField == emailTextField{
             registrationViewModel.emailAddress = textField.text
         }else{
-            registrationViewModel.passowrdField = textField.text
+            registrationViewModel.passwordField = textField.text
         }
     }
     
     @objc fileprivate func handleRegisterTapped(){
         self.handleTapDismiss()
-        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
-        Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-            if let err = err {
-                self.showError(error: err)
+        registrationViewModel.performRegistration { [weak self] (err) in
+            guard let selfObject = self else { return }
+            if let err = err{
+                selfObject.showError(error: err)
                 return
             }
         }
+        
     }
     
     @objc fileprivate func handleImageSelection(){
