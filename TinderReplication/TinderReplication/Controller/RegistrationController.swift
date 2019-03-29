@@ -30,6 +30,7 @@ class RegistrationController: UIViewController {
         textField.placeholder = "Enter full name"
         textField.backgroundColor = .white
         textField.addTarget(self, action: #selector(handleTextChang), for: .editingChanged)
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -39,6 +40,7 @@ class RegistrationController: UIViewController {
         textField.keyboardType = .emailAddress
         textField.backgroundColor = .white
         textField.addTarget(self, action: #selector(handleTextChang), for: .editingChanged)
+        textField.autocorrectionType = .no
         return textField
     }()
     
@@ -48,6 +50,7 @@ class RegistrationController: UIViewController {
         textField.isSecureTextEntry = true
         textField.backgroundColor = .white
         textField.addTarget(self, action: #selector(handleTextChang), for: .editingChanged)
+        textField.autocorrectionType = .no
         return textField
     }()
     
