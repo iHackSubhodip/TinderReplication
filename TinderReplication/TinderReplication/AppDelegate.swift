@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         window?.makeKeyAndVisible()
-        window?.rootViewController = RegistrationController()
+        window?.rootViewController = TinderHomeController()
         return true
     }
 

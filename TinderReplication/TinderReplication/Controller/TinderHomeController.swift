@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MiddleUIView: UIView{ }
 
@@ -16,26 +17,28 @@ class TinderHomeController: UIViewController {
     let bottomStackView = BottomStackView()
     let middleCardView = MiddleUIView()
     
-    let usersCard: [TinderCardViewModel] = {
-        let producer = [
-            UserModel(name: "Jane", age: 26, profession: "SDE", imageNames: ["jane1", "jane2", "jane3"]),
-            AdvertiserModel(tittle: "Riju", posterImageName: "0", brandname: "SDE")
-            ] as [TinderCardViewModelProtocol]
-        
-        let cardViewModel = producer.map ({
-            return $0.convertToCardViewModel()
-        })
-        return cardViewModel
-    }()
+//    let usersCard: [TinderCardViewModel] = {
+//        let producer = [
+//            UserModel(name: "Jane", age: 26, profession: "SDE", imageNames: ["jane1", "jane2", "jane3"]),
+//            AdvertiserModel(tittle: "Riju", posterImageName: "0", brandname: "SDE")
+//            ] as [TinderCardViewModelProtocol]
+//
+//        let cardViewModel = producer.map ({
+//            return $0.convertToCardViewModel()
+//        })
+//        return cardViewModel
+//    }()
+    
+    var usersCardViewModel = [TinderCardViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
-        setupCardView()
+        fetchFromFirestore()
     }
     
     fileprivate func setupCardView(){
-        usersCard.forEach { (user) in
+        usersCardViewModel.forEach { (user) in
             let cardView = MiddleCardView(frame: .zero)
             cardView.cardViewModel = user
             middleCardView.addSubview(cardView)
@@ -44,6 +47,7 @@ class TinderHomeController: UIViewController {
     }
     
     fileprivate func setupStackView(){
+        view.backgroundColor = .white
         let fullScreenStackView = UIStackView(arrangedSubviews: [topStackView, middleCardView, bottomStackView])
         fullScreenStackView.axis = .vertical
         view.addSubview(fullScreenStackView)
@@ -51,6 +55,21 @@ class TinderHomeController: UIViewController {
         fullScreenStackView.isLayoutMarginsRelativeArrangement = true
         fullScreenStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         fullScreenStackView.bringSubviewToFront(middleCardView)
+    }
+    
+    fileprivate func fetchFromFirestore(){
+        Firestore.firestore().collection("users").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("error is: ", err)
+                return
+            }
+            snapshot?.documents.forEach({ (documentSnapShot) in
+                let dataDictionary = documentSnapShot.data()
+                let user = UserModel(dataDictionary)
+                self.usersCardViewModel.append(user.convertToCardViewModel())
+            })
+            self.setupCardView()
+        }
     }
 
 }

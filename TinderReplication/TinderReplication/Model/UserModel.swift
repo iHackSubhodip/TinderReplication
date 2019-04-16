@@ -9,18 +9,31 @@
 import UIKit
 
 struct UserModel: TinderCardViewModelProtocol{
-    let name: String
-    let age: Int
-    let profession: String
-    let imageNames: [String]
+    var name: String?
+    var age: Int?
+    var profession: String?
+    var imageNames: String?
+    let uid: String?
+    
+    init(_ dictionary: [String: Any]){
+        self.name = dictionary["fullName"] as? String ?? ""
+        self.imageNames = dictionary["imageUrls"] as? String ?? ""
+        self.age = dictionary["age"] as? Int
+        self.profession = dictionary["profession"] as? String
+        self.uid = dictionary["uid"] as? String ?? ""
+    }
     
     func convertToCardViewModel() -> TinderCardViewModel{
         
-        let attributedUserInfoText = NSMutableAttributedString(string: name, attributes:[.font: UIFont.systemFont(ofSize: 34, weight: .heavy)])
-        attributedUserInfoText.append(NSMutableAttributedString(string: "  \(age)", attributes:[.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
-        attributedUserInfoText.append(NSMutableAttributedString(string: "\n\(profession)", attributes:[.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        let attributedUserInfoText = NSMutableAttributedString(string: name ?? "", attributes:[.font: UIFont.systemFont(ofSize: 34, weight: .heavy)])
         
-        return TinderCardViewModel(imageNamesArray: imageNames, attributedString: attributedUserInfoText, textAlignment: .left)
+        let ageString = age != nil ? "\(age!)" : "N\\A"
+        attributedUserInfoText.append(NSMutableAttributedString(string: "  \(ageString)", attributes:[.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
+        
+        let professionString = profession != nil ? profession! : "Not available"
+        attributedUserInfoText.append(NSMutableAttributedString(string: "\n\(professionString)", attributes:[.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        
+        return TinderCardViewModel(imageNamesArray: [imageNames ?? ""], attributedString: attributedUserInfoText, textAlignment: .left)
     }
 }
 

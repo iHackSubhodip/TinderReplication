@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MiddleCardView: UIView{
     
@@ -18,10 +19,10 @@ class MiddleCardView: UIView{
     
     var cardViewModel: TinderCardViewModel?{
         didSet{
-            guard let imageName = cardViewModel?.imageNamesArray.first, let attributedString = cardViewModel?.attributedString, let textAlignment = cardViewModel?.textAlignment else{
+            guard let imageName = URL(string: cardViewModel?.imageNamesArray.first ?? ""), let attributedString = cardViewModel?.attributedString, let textAlignment = cardViewModel?.textAlignment else{
                 return
             }
-            imageView.image = UIImage(named: imageName)
+            imageView.sd_setImage(with: imageName)
             userInformation.attributedText = attributedString
             userInformation.textAlignment = textAlignment
             let imageCount = cardViewModel?.imageNamesArray.count ?? 0
