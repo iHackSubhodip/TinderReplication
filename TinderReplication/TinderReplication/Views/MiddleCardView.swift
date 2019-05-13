@@ -80,8 +80,8 @@ class MiddleCardView: UIView{
     
     fileprivate func setupImageIndexObserver(){
         cardViewModel?.imageIndexObserver = { [weak self] (index, image) in
-            guard let selfObject = self else { return }
-            selfObject.imageView.image = image
+            guard let selfObject = self, let imageUrl = URL(string: image) else { return }
+            selfObject.imageView.sd_setImage(with: imageUrl)
             selfObject.barStackView.arrangedSubviews.forEach({ (view) in
                 view.backgroundColor = UIColor(white: 0, alpha: 0.1)
             })

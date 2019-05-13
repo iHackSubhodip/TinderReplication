@@ -16,11 +16,10 @@ class TinderCardViewModel{
     fileprivate var imageIndex = 0{
         didSet{
             let imageName = imageNamesArray[imageIndex]
-            let image = UIImage(named: imageName)
-            imageIndexObserver?(imageIndex, image ?? UIImage())
+            imageIndexObserver?(imageIndex, imageName)
         }
     }
-    var imageIndexObserver: ((Int, UIImage) -> ())?
+    var imageIndexObserver: ((Int, String) -> ())?
     
     init(imageNamesArray: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment){
         self.imageNamesArray = imageNamesArray
