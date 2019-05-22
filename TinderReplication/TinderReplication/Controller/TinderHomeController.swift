@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class MiddleUIView: UIView{ }
 
@@ -16,31 +17,22 @@ class TinderHomeController: UIViewController {
     let topStackView = TopStackView()
     let bottomStackView = BottomStackView()
     let middleCardView = MiddleUIView()
-    
-//    let usersCard: [TinderCardViewModel] = {
-//        let producer = [
-//            UserModel(name: "Jane", age: 26, profession: "SDE", imageNames: ["jane1", "jane2", "jane3"]),
-//            AdvertiserModel(tittle: "Riju", posterImageName: "0", brandname: "SDE")
-//            ] as [TinderCardViewModelProtocol]
-//
-//        let cardViewModel = producer.map ({
-//            return $0.convertToCardViewModel()
-//        })
-//        return cardViewModel
-//    }()
-    
+    var lastFetchUser: UserModel?
     var usersCardViewModel = [TinderCardViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupStackView()
         fetchFromFirestore()
+        setupFirestoreUserCards()
+        topStackView.settingsButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
+        bottomStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
     }
     
-    fileprivate func setupCardView(){
-        usersCardViewModel.forEach { (user) in
+    fileprivate func setupFirestoreUserCards() {
+        usersCardViewModel.forEach { (cardVM) in
             let cardView = MiddleCardView(frame: .zero)
-            cardView.cardViewModel = user
+            cardView.cardViewModel = cardVM
             middleCardView.addSubview(cardView)
             cardView.fillSuperview()
         }
@@ -57,8 +49,24 @@ class TinderHomeController: UIViewController {
         fullScreenStackView.bringSubviewToFront(middleCardView)
     }
     
+    @objc fileprivate func handleSettings(){
+        let registrationController = RegistrationController()
+        present(registrationController, animated: true)
+    }
+    
+    @objc fileprivate func handleRefresh(){
+        fetchFromFirestore()
+    }
+    
+    
     fileprivate func fetchFromFirestore(){
-        Firestore.firestore().collection("users").getDocuments { (snapshot, err) in
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Fetching Users"
+        hud.show(in: view)
+        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchUser?.uid ?? ""]).limit(to: 2)
+        
+        query.getDocuments { (snapshot, err) in
+            hud.dismiss()
             if let err = err {
                 print("error is: ", err)
                 return
@@ -67,9 +75,19 @@ class TinderHomeController: UIViewController {
                 let dataDictionary = documentSnapShot.data()
                 let user = UserModel(dataDictionary)
                 self.usersCardViewModel.append(user.convertToCardViewModel())
+                self.lastFetchUser = user
+                self.setupCardFromUser(user: user)
             })
-            self.setupCardView()
+            
         }
+    }
+    
+    fileprivate func setupCardFromUser(user: UserModel){
+        let cardView = MiddleCardView(frame: .zero)
+        cardView.cardViewModel = user.convertToCardViewModel()
+        middleCardView.addSubview(cardView)
+        middleCardView.sendSubviewToBack(cardView)
+        cardView.fillSuperview()
     }
 
 }
