@@ -22,6 +22,8 @@
 		903418D92237A6C1006E5D1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903418D82237A6C1006E5D1C /* CustomTextField.swift */; };
 		9037B4492240DEAF00726E1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9037B4482240DEAF00726E1D /* GoogleService-Info.plist */; };
 		9037B44C2240F42300726E1D /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9037B44B2240F42300726E1D /* Bindable.swift */; };
+		904E5BB62296779600C5D604 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904E5BB52296779600C5D604 /* SettingsViewController.swift */; };
+		904E5BB82296869B00C5D604 /* CustomImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904E5BB72296869B00C5D604 /* CustomImagePicker.swift */; };
 		909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */; };
 		909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A62225438E00ECDD04 /* TopStackView.swift */; };
 		909C29A92225439F00ECDD04 /* BottomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909C29A82225439F00ECDD04 /* BottomStackView.swift */; };
@@ -58,6 +60,8 @@
 		903418D82237A6C1006E5D1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		9037B4482240DEAF00726E1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9037B44B2240F42300726E1D /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		904E5BB52296779600C5D604 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		904E5BB72296869B00C5D604 /* CustomImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImagePicker.swift; sourceTree = "<group>"; };
 		909C29A422253D1C00ECDD04 /* Extension+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIKit.swift"; sourceTree = "<group>"; };
 		909C29A62225438E00ECDD04 /* TopStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStackView.swift; sourceTree = "<group>"; };
 		909C29A82225439F00ECDD04 /* BottomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomStackView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			children = (
 				9019173E2223FC7B00DA9F67 /* TinderHomeController.swift */,
 				903418D5223783AB006E5D1C /* RegistrationController.swift */,
+				904E5BB52296779600C5D604 /* SettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				903418D82237A6C1006E5D1C /* CustomTextField.swift */,
+				904E5BB72296869B00C5D604 /* CustomImagePicker.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -413,10 +419,12 @@
 				90223875222592C900D7B16F /* UserModel.swift in Sources */,
 				909C29A522253D1C00ECDD04 /* Extension+UIKit.swift in Sources */,
 				909C29A72225438E00ECDD04 /* TopStackView.swift in Sources */,
+				904E5BB62296779600C5D604 /* SettingsViewController.swift in Sources */,
 				9019173F2223FC7B00DA9F67 /* TinderHomeController.swift in Sources */,
 				9019173D2223FC7B00DA9F67 /* AppDelegate.swift in Sources */,
 				903418D6223783AB006E5D1C /* RegistrationController.swift in Sources */,
 				9022387222256CE700D7B16F /* MiddleCardView.swift in Sources */,
+				904E5BB82296869B00C5D604 /* CustomImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
