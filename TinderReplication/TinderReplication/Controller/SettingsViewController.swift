@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class SettingsViewController: UITableViewController {
     
     lazy var image1Button = createButton(selector: #selector(handleButton))
     lazy var image2Button = createButton(selector: #selector(handleButton))
     lazy var image3Button = createButton(selector: #selector(handleButton))
+    var user: UserModel?
     
     lazy var headerView: UIView = {
         let headerView = UIView()
@@ -32,6 +36,21 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         setupTableView()
         setupNavigationItems()
+        fetchCurrentUsers()
+    }
+    
+    fileprivate func fetchCurrentUsers(){
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document("keO1ORuUMiSUBhaTXrk1DgBhdim1").getDocument { (snapshot, err) in
+            if let err = err{
+                print(err)
+                return
+            }
+            guard let dictionary = snapshot?.data() else { return }
+            self.user = UserModel(dictionary)
+            self.fetchUserPhoto()
+            self.tableView.reloadData()
+        }
     }
 
     fileprivate func setupTableView() {
@@ -57,6 +76,13 @@ class SettingsViewController: UITableViewController {
         button.imageView?.contentMode = .scaleAspectFill
         button.layer.cornerRadius = 8
         return button
+    }
+    
+    fileprivate func fetchUserPhoto(){
+        guard let imageStringUrl = user?.imageNames, let url = URL(string: imageStringUrl) else { return }
+        SDWebImageManager.shared().loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            self.image1Button.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
     }
     
     @objc func handleCancel(){
@@ -112,10 +138,13 @@ extension SettingsViewController{
         switch indexPath.section{
         case 1:
             cell.textField.placeholder = "Enter Name"
+            cell.textField.text = user?.name
         case 2:
             cell.textField.placeholder = "Enter Profession"
+            cell.textField.text = user?.profession
         case 3:
             cell.textField.placeholder = "Enter Age"
+            cell.textField.text = String(user?.age ?? 0)
         default:
             cell.textField.placeholder = "Enter Bio"
         }
